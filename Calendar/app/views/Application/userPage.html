@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<b>${otherUser.getName()}'s Calendars</b>
+<a href="@{Secure.logout()}">logout(${user.getName()})</a>
+<a href="@{Application.index()}">back</a>
+<br />
+<ul>
+	%{for(calendar in otherUser.getCalendars()){ }%
+		<li>
+			<a href="@{Application.calendar(otherUser.getCalendars().indexOf(calendar), otherUser.getName())}">
+				${calendar.getName()}
+			</a>
+		</li>
+	%{ } }%
+</ul>
+

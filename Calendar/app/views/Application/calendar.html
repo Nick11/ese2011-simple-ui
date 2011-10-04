@@ -1,0 +1,40 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<b>${calendar.getName()}</b>
+<a href="@{Secure.logout()}">logout(${user.getName()})</a>
+<a href="@{Application.index()}">back</a>
+<br />
+<ol>
+	%{for (event in list){ }%
+		<li>
+			<b>${event.getName()}</b> <br />
+			from <i>${event.getStartDateString()}</i> until <i>${event.getEndDateString()}</i> 			
+		</li>
+	%{ } }%
+</ol>
+<br />
+%{if(user.equals(otherUser)){ }%
+<b>Add Event</b>
+#{form @Application.addEvent(calendar.getName())}
+    <p>
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name" />
+    </p>
+    <p>
+        <label for="startDate">starts(dd.mm.yyyy;hh:mm): </label>
+        <input name="startDate" id="startDate"></input>
+    </p>
+    <p>
+        <label for="endDate">ends(dd.mm.yyyy;hh:mm): </label>
+        <input name="endDate" id="endDate"></input>
+    </p>
+     <p>
+        <label for="isPrivate">isPrivate(y/n): </label>
+        <input name="isPrivate" id="isPrivate"></input>
+    </p>
+    <p>
+        <input type="submit" value="Add Event" />
+    </p>
+#{/form}
+%{ } }%
