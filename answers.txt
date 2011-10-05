@@ -1,0 +1,17 @@
+1. GET request für /'something' gelangt zum Server, der auf Grund des Eintrags
+	
+	GET    /   Application.index
+die Methode index() in Application aufruft. Die Klasse Application ist aber durch
+	@With(Secure.class)
+als gesichert markiert und die Anfrage wird an /login weitergeleited.Das File 
+	secure/routes
+ruft deshalb Secure.login auf, das indirekt die in Security definierte Methode zur authendifizierung aufruft.
+Ist diese erfolgreich durchgeführt, leitet die Secure Klasse die Anfrage zu der ursprünglichen Adresse zurück
+und führt die Methode Application.index() diesmal aus.
+Diese wurstelt einige Objekte und Listen bereit, die dann als Argumente an den Aufruf des Templates index.html übergeben
+werden. Index.html bereitet diese Objekte auf und generiert einen html code, der dann zurückgesandt und vom
+Browser dargestellt wird.
+
+2. Implementieren und anschauen.
+Oder HTML requests in einem Test simulieren bspw. GET / und überprüfen ob die erhaltene Antwort den Erwartungen entspricht.
+bspw., ob sie angekommen ist, an den richtigen Ort verweist und ob ein login aufgefordert wird.
