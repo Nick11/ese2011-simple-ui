@@ -3,11 +3,8 @@ package controllers;
 import play.*;
 import play.mvc.*;
 import play.test.Fixtures;
-
 import java.util.*;
-
 import org.jboss.netty.bootstrap.Bootstrap;
-
 import models.*;
 import models.Calendar;
 
